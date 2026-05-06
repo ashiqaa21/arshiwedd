@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Great+Vibes&family=Montserrat:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Great+Vibes&family=Montserrat:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Allura&family=Alex+Brush&family=Parisienne&family=Tangerine:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Cormorant Garamond", serif;
+  --font-display: "Playfair Display", serif;
+  --font-cursive: "Great Vibes", cursive;
+  --font-sans: "Montserrat", sans-serif;
+  --font-sans: "Montserrat", sans-serif;
+  --font-serif: "Cormorant Garamond", serif;
+  --font-display: "Playfair Display", serif;
+  --font-cursive: "Great Vibes", cursive;
+  --font-calligraphy: "Allura", cursive;
+  --font-luxury: "Alex Brush", cursive;
+  --font-romantic: "Parisienne", cursive;
+  --font-royal: "Tangerine", cursive;
+  --font-sans: "Montserrat", sans-serif;
+
+  --color-wedding-cream: #fbfaf8;
+  --color-wedding-gold: #c5a358;
+  --color-wedding-sage: #849483;
+  --color-wedding-ink: #1a1a1a;
+  
+  --color-wedding-cream: #fbfaf8;
+  --color-wedding-gold: #c5a358;
+  --color-wedding-sage: #849483;
+  --color-wedding-ink: #1a1a1a;
+}
+
+@layer base {
+  body {
+    @apply bg-wedding-cream text-wedding-ink font-serif antialiased;
+  }
+}
+
+.wax-seal-texture {
+  background: radial-gradient(circle at 30% 30%, #ffffff, #f0ede6 60%, #dcd8ce 100%);
+  box-shadow: 
+    inset 2px 2px 5px rgba(255, 255, 255, 0.8),
+    inset -2px -2px 5px rgba(0, 0, 0, 0.05),
+    0 4px 10px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.wax-seal-inner {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: radial-gradient(circle at 50% 50%, #ffffff, #f9f7f2);
+}
+
+.pearl-bead {
+  background: radial-gradient(circle at 30% 30%, #ffffff, #e8e4db);
+  box-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+.envelope-shadow {
+  box-shadow: 0 15px 45px -10px rgba(0, 0, 0, 0.15);
+}
