@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Heart, Sparkles } from 'lucide-react';
-import confetti from 'canvas-confetti';
 
 export const ScratchCard = ({
   onComplete,
@@ -10,20 +9,30 @@ export const ScratchCard = ({
 }) => {
   const [isOpened, setIsOpened] = useState(false);
 
-  const handleReveal = () => {
+  const handleReveal = async () => {
     if (isOpened) return;
 
     setIsOpened(true);
     onComplete();
 
-    confetti({
-      particleCount: 30,
-      spread: 60,
-      startVelocity: 15,
-      scalar: 0.9,
-      colors: ['#D4AF37', '#F7E7A9'],
-      origin: { y: 0.6 },
-    });
+    // ✅ Safe confetti for mobile + Vercel
+    try {
+      if (typeof window !== 'undefined') {
+        const confetti = (await import('canvas-confetti')).default;
+
+        confetti({
+          particleCount: 40,
+          spread: 70,
+          startVelocity: 20,
+          scalar: 0.9,
+          ticks: 150,
+          colors: ['#D4AF37', '#F7E7A9'],
+          origin: { y: 0.6 },
+        });
+      }
+    } catch (err) {
+      console.log('Confetti failed:', err);
+    }
   };
 
   return (
@@ -66,6 +75,7 @@ export const ScratchCard = ({
       <AnimatePresence>
         {!isOpened && (
           <motion.button
+            type="button"
             onClick={handleReveal}
             initial={{ opacity: 1 }}
             exit={{

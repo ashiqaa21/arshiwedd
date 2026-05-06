@@ -32,15 +32,15 @@ export default defineConfig(({ mode }) => {
       sourcemap: false, // hides original source code
       minify: 'terser',
 
-      terserOptions: {
-        compress: {
-          drop_console: true,
-          drop_debugger: true,
-        },
-        format: {
-          comments: false,
-        },
-      },
+      // terserOptions: {
+      //   compress: {
+      //     drop_console: true,
+      //     drop_debugger: true,
+      //   },
+      //   format: {
+      //     comments: false,
+      //   },
+      // },
 
       rollupOptions: {
         output: {
