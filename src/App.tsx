@@ -1,4 +1,4 @@
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import { Heart, ChevronDown } from 'lucide-react';
 
@@ -16,33 +16,33 @@ export default function App() {
   const [isAudioPlaying, setIsAudioPlaying] = useState(false);
 
   // 🔒 Basic Protection
-  useEffect(() => {
-    // Disable Right Click
-    const handleContextMenu = (e: MouseEvent) => {
-      e.preventDefault();
-    };
+  // useEffect(() => {
+  //   // Disable Right Click
+  //   const handleContextMenu = (e: MouseEvent) => {
+  //     e.preventDefault();
+  //   };
 
     // Disable DevTools + View Source shortcuts
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (
-        e.key === 'F12' ||
-        (e.ctrlKey &&
-          e.shiftKey &&
-          ['I', 'J', 'C'].includes(e.key)) ||
-        (e.ctrlKey && e.key.toLowerCase() === 'u')
-      ) {
-        e.preventDefault();
-      }
-    };
+  //   const handleKeyDown = (e: KeyboardEvent) => {
+  //     if (
+  //       e.key === 'F12' ||
+  //       (e.ctrlKey &&
+  //         e.shiftKey &&
+  //         ['I', 'J', 'C'].includes(e.key)) ||
+  //       (e.ctrlKey && e.key.toLowerCase() === 'u')
+  //     ) {
+  //       e.preventDefault();
+  //     }
+  //   };
 
-    document.addEventListener('contextmenu', handleContextMenu);
-    window.addEventListener('keydown', handleKeyDown);
+  //   document.addEventListener('contextmenu', handleContextMenu);
+  //   window.addEventListener('keydown', handleKeyDown);
 
-    return () => {
-      document.removeEventListener('contextmenu', handleContextMenu);
-      window.removeEventListener('keydown', handleKeyDown);
-    };
-  }, []);
+  //   return () => {
+  //     document.removeEventListener('contextmenu', handleContextMenu);
+  //     window.removeEventListener('keydown', handleKeyDown);
+  //   };
+  // }, []);
 
   const handleOpen = () => {
     setIsOpen(true);

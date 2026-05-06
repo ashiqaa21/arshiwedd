@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 import { Heart, Sparkles } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
@@ -128,7 +128,8 @@ const defaults = {
         ref={canvasRef}
         width={320}
         height={208}
-animate={isDone ? { opacity: 0 } : { opacity: 1 }}        transition={{ duration: 0.5 }}
+animate={isDone ? { opacity: 0 } : { opacity: 1 }}      
+  transition={{ duration: 0.5 }}
         onMouseDown={handleInteraction}
         onTouchStart={handleInteraction}
         onMouseMove={updatePointer}
