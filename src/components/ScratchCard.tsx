@@ -22,22 +22,41 @@ export const ScratchCard = ({
     // Hide confetti after 2.5 sec
     setTimeout(() => {
       setShowConfetti(false);
-    }, 2500);
+    }, 4200);
   };
 
   return (
     <div className="relative w-[300px] h-[190px] sm:w-80 sm:h-52 mx-auto">
 
       {/* Confetti */}
-      {showConfetti && (
-        <div className="fixed inset-0 pointer-events-none z-[999]">
-          <Confetti
-            numberOfPieces={120}
-            recycle={false}
-            gravity={0.18}
-          />
-        </div>
-      )}
+      <AnimatePresence>
+  {showConfetti && (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{
+        duration: 1.2,
+        ease: 'easeOut',
+      }}
+      className="fixed inset-0 pointer-events-none z-[999]"
+    >
+      <Confetti
+        numberOfPieces={650}
+        recycle={false}
+        gravity={0.12}
+        tweenDuration={6000}
+        colors={[
+          '#D4AF37',
+          '#E5C15A',
+          '#F7E7A9',
+          '#C5A358',
+          '#FFF4C2',
+        ]}
+      />
+    </motion.div>
+  )}
+</AnimatePresence>
 
       {/* Revealed Content */}
       <div className="absolute inset-0 bg-white rounded-2xl shadow-inner flex flex-col items-center justify-center border border-wedding-gold/20 overflow-hidden px-4">
