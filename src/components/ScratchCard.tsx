@@ -6,7 +6,6 @@ import confetti from 'canvas-confetti';
 export const ScratchCard = ({ onComplete }: { onComplete: () => void }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isDone, setIsDone] = useState(false);
-  const [isScratching, setIsScratching] = useState(false);
   const [pointerPos, setPointerPos] = useState({ x: 0, y: 0 });
 
   const initCanvas = useCallback(() => {
@@ -69,16 +68,18 @@ const defaults = {
 };
     const randomInRange = (min: number, max: number) => Math.random() * (max - min) + min;
 
- confetti({
-  particleCount: 80,
-  spread: 90,
-  startVelocity: 20,
-  scalar: 1.1,
-  ticks: 120,
-  colors: ['#D4AF37', '#FFD700', '#F7E7A9'],
-  origin: { y: 0.6 },
-});
-  };
+setTimeout(() => {
+  confetti({
+    particleCount: 25,
+    spread: 50,
+    startVelocity: 12,
+    scalar: 0.8,
+    ticks: 60,
+    gravity: 1.2,
+    colors: ['#D4AF37', '#F7E7A9'],
+    origin: { y: 0.7 },
+  });
+}, 100);  };
 
   const handleInteraction = (e: React.MouseEvent | React.TouchEvent) => {
     const rect = canvasRef.current?.getBoundingClientRect();
@@ -131,10 +132,11 @@ const defaults = {
 animate={isDone ? { opacity: 0 } : { opacity: 1 }}      
   transition={{ duration: 0.5 }}
         onMouseDown={handleInteraction}
-        onTouchStart={handleInteraction}
-        onMouseMove={updatePointer}
-        className="absolute inset-0 rounded-2xl cursor-none z-10 touch-none shadow-xl"
-      />
+onTouchStart={(e) => {
+  e.preventDefault();
+  handleInteraction(e);
+}}        onMouseMove={updatePointer}
+className="absolute inset-0 rounded-2xl z-10 shadow-xl"      />
 
       {/* Floating Heart Cursor */}
       {!isDone && (
