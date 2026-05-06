@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Heart, Sparkles } from 'lucide-react';
+import Confetti from 'react-confetti';
 
 export const ScratchCard = ({
   onComplete,
@@ -8,16 +9,35 @@ export const ScratchCard = ({
   onComplete: () => void;
 }) => {
   const [isOpened, setIsOpened] = useState(false);
+  const [showConfetti, setShowConfetti] = useState(false);
 
   const handleReveal = () => {
     if (isOpened) return;
 
     setIsOpened(true);
+    setShowConfetti(true);
+
     onComplete();
+
+    // Hide confetti after 2.5 sec
+    setTimeout(() => {
+      setShowConfetti(false);
+    }, 2500);
   };
 
   return (
     <div className="relative w-[300px] h-[190px] sm:w-80 sm:h-52 mx-auto">
+
+      {/* Confetti */}
+      {showConfetti && (
+        <div className="fixed inset-0 pointer-events-none z-[999]">
+          <Confetti
+            numberOfPieces={120}
+            recycle={false}
+            gravity={0.18}
+          />
+        </div>
+      )}
 
       {/* Revealed Content */}
       <div className="absolute inset-0 bg-white rounded-2xl shadow-inner flex flex-col items-center justify-center border border-wedding-gold/20 overflow-hidden px-4">
