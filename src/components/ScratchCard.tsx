@@ -9,30 +9,11 @@ export const ScratchCard = ({
 }) => {
   const [isOpened, setIsOpened] = useState(false);
 
-  const handleReveal = async () => {
+  const handleReveal = () => {
     if (isOpened) return;
 
     setIsOpened(true);
     onComplete();
-
-    // ✅ Safe confetti for mobile + Vercel
-    try {
-      if (typeof window !== 'undefined') {
-        const confetti = (await import('canvas-confetti')).default;
-
-        confetti({
-          particleCount: 40,
-          spread: 70,
-          startVelocity: 20,
-          scalar: 0.9,
-          ticks: 150,
-          colors: ['#D4AF37', '#F7E7A9'],
-          origin: { y: 0.6 },
-        });
-      }
-    } catch (err) {
-      console.log('Confetti failed:', err);
-    }
   };
 
   return (
@@ -43,11 +24,7 @@ export const ScratchCard = ({
 
         <motion.div
           initial={{ opacity: 0, y: 10 }}
-          animate={
-            isOpened
-              ? { opacity: 1, y: 0 }
-              : {}
-          }
+          animate={isOpened ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
           className="text-center"
         >
@@ -78,11 +55,8 @@ export const ScratchCard = ({
             type="button"
             onClick={handleReveal}
             initial={{ opacity: 1 }}
-            exit={{
-              opacity: 0,
-              scale: 1.05,
-            }}
-            transition={{ duration: 0.6 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.4 }}
             className="
               absolute
               inset-0
@@ -97,17 +71,19 @@ export const ScratchCard = ({
               flex
               items-center
               justify-center
+              transform-gpu
+              will-change-transform
             "
           >
             {/* Glitter */}
             <div className="absolute inset-0 opacity-20">
-              {[...Array(40)].map((_, i) => (
+              {Array.from({ length: 25 }).map((_, i) => (
                 <div
                   key={i}
                   className="absolute w-[2px] h-[2px] bg-white rounded-full"
                   style={{
-                    top: `${Math.random() * 100}%`,
-                    left: `${Math.random() * 100}%`,
+                    top: `${(i * 13) % 100}%`,
+                    left: `${(i * 29) % 100}%`,
                   }}
                 />
               ))}
@@ -118,11 +94,11 @@ export const ScratchCard = ({
 
               <motion.div
                 animate={{
-                  scale: [1, 1.08, 1],
+                  scale: [1, 1.05, 1],
                 }}
                 transition={{
                   repeat: Infinity,
-                  duration: 1.8,
+                  duration: 2,
                 }}
                 className="relative"
               >

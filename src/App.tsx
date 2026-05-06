@@ -115,11 +115,11 @@ className="absolute inset-x-6 top-6 bottom-6 bg-white shadow-lg z-20 flex flex-c
               {/* Envelope Flap */}
               <motion.div
                 style={{ originY: 0 }}
-                animate={
-                  isOpen
-                    ? { rotateX: 180, zIndex: 10 }
-                    : { rotateX: 0, zIndex: 40 }
-                }
+               animate={
+  isOpen
+    ? { opacity: 0 }
+    : { opacity: 1 }
+}
                 transition={{
                   duration: 1,
                   ease: 'easeInOut',
