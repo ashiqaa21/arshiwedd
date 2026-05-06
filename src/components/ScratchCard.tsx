@@ -69,17 +69,15 @@ const defaults = {
 };
     const randomInRange = (min: number, max: number) => Math.random() * (max - min) + min;
 
-    const interval: any = setInterval(function() {
-      const timeLeft = animationEnd - Date.now();
-
-      if (timeLeft <= 0) {
-        return clearInterval(interval);
-      }
-
-      const particleCount = 50 * (timeLeft / duration);
-      confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } });
-      confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } });
-    }, 250);
+ confetti({
+  particleCount: 80,
+  spread: 90,
+  startVelocity: 20,
+  scalar: 1.1,
+  ticks: 120,
+  colors: ['#D4AF37', '#FFD700', '#F7E7A9'],
+  origin: { y: 0.6 },
+});
   };
 
   const handleInteraction = (e: React.MouseEvent | React.TouchEvent) => {
@@ -130,8 +128,7 @@ const defaults = {
         ref={canvasRef}
         width={320}
         height={208}
-        animate={isDone ? { opacity: 0, scale: 1.2, pointerEvents: 'none' } : { opacity: 1 }}
-        transition={{ duration: 0.5 }}
+animate={isDone ? { opacity: 0 } : { opacity: 1 }}        transition={{ duration: 0.5 }}
         onMouseDown={handleInteraction}
         onTouchStart={handleInteraction}
         onMouseMove={updatePointer}

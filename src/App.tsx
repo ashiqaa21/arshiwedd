@@ -74,7 +74,7 @@ export default function App() {
             }}
             className="fixed inset-0 z-[100] flex items-center justify-center bg-[#fdfcf9]"
           >
-            <div className="relative w-[90vw] max-w-lg aspect-[4/3] flex items-center justify-center">
+            <div className="relative w-[92vw] max-w-lg min-h-[320px] md:aspect-[4/3] flex items-center justify-center">
 
               {/* Envelope Back */}
               <div className="absolute inset-0 bg-[#f7f5f0] rounded-lg shadow-[0_20px_60px_-15px_rgba(0,0,0,0.2)] border border-black/[0.03]" />
@@ -91,8 +91,7 @@ export default function App() {
                   delay: 0.4,
                   ease: [0.34, 1.56, 0.64, 1],
                 }}
-                className="absolute inset-x-8 top-8 bottom-8 bg-white shadow-lg z-20 flex flex-col items-center justify-center p-8 text-center border border-wedding-gold/10"
-              >
+className="absolute inset-x-6 top-6 bottom-6 bg-white shadow-lg z-20 flex flex-col items-center justify-center p-6 md:p-8 text-center border border-wedding-gold/10 overflow-hidden"              >
                 <motion.div
                   animate={isOpen ? { opacity: 1 } : { opacity: 0 }}
                   transition={{ delay: 0.8 }}
@@ -101,7 +100,7 @@ export default function App() {
                     Exclusive Invitation
                   </p>
 
-                  <h2 className="font-calligraphy text-5xl mb-2 text-wedding-ink">
+                  <h2 className="font-calligraphy text-4xl md:text-5xl mb-2 text-wedding-ink leading-tight">
                     Arshiya & Shihab
                   </h2>
 
